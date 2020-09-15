@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Navbar from './components/Navbar';
+import Content from './components/Content';
+import Footer from './components/Footer';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import axios from 'axios';
+import AddPost from './components/AddPost';
+import EditPost from './components/EditPost';
+import Post from './components/Post';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    posts: []
+  }
+
+  componentDidMount() {
+    axios.get(`http://localhost:4000/`)
+      .then(res => {
+        const posts = res.data;
+        this.setState({ posts });
+      });
+  }
+
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Route exact path="/" render={props => (
+            <React.Fragment>
+              <Content posts={this.state.posts} />
+            </React.Fragment>
+          )} />
+          <Switch>
+            <Route path="/addPost" component={AddPost} />
+            <Route path="/:postId/edit" component={EditPost} />
+            <Route path="/:postId" component={Post} />
+          </Switch>
+          <Footer />
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
