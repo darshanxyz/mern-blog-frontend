@@ -50,9 +50,48 @@ li a:hover {
   cursor: pointer;
 }
 
+.google-btn button:focus {
+  outline: none;
+}
+
 .google-btn button:hover {
   color: #4190c8;
 }
+
+.menu ul, 
+.menu input, 
+.menu .closer, 
+.menu input:checked ~ .opener{
+    display:none;
+}
+.menu input:checked ~ ul,
+.menu input:checked ~ .closer{
+    display:block;
+}
+
+.nav-sub-menu {
+  position: absolute;
+  margin-top: 10px;
+  background-color: #FFF;
+  box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.3);
+}
+
+.nav-sub-menu li {
+  padding: 15px 25px;
+}
+
+.nav-sub-menu li:nth-child(1) {
+  border-bottom: 1px #EAEAEA solid;
+}
+
+.nav label {
+  cursor: pointer;
+}
+
+.nav label:hover {
+  color: #4190c8;
+}
+
 
 .footer {
   position: fixed;

@@ -9,13 +9,6 @@ const responseGoogle = (response) => {
 class GoogleButton extends Component {
   constructor(props) {
     super();
-    this.state = {
-      isLoggedIn: false,
-      accessToken: '',
-      firstName: '',
-      email: ''
-    };
-
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     props.getUser.bind(this);
@@ -24,13 +17,13 @@ class GoogleButton extends Component {
   login(response) {
     console.log(response);
     if (response.accessToken) {
-      this.setState(state => ({
+      const user = {
         isLoggedIn: true,
         accessToken: response.accessToken,
         firstName: response.profileObj.givenName,
         email: response.profileObj.email
-      }));
-      this.props.getUser(this.state);
+      };
+      this.props.getUser(user);
     }
   }
 
@@ -41,13 +34,14 @@ class GoogleButton extends Component {
       firstName: '',
       email: ''
     }));
+    window.location = '/';
   }
 
   render() {
     return (
       <div className="google-btn">
         {
-          this.state.isLoggedIn ?
+          this.props.user.isLoggedIn ?
             <div>
               <GoogleLogout
                 clientId={CLIENT_ID}
