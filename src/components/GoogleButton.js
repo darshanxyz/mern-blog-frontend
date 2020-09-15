@@ -52,7 +52,7 @@ class GoogleButton extends Component {
               <GoogleLogout
                 clientId={CLIENT_ID}
                 render={renderProps => (
-                  <button onClick={renderProps.onClick} disabled={renderProps.disabled}>Hi, {this.state.firstName}, sign out?</button>
+                  <button onClick={renderProps.onClick} disabled={renderProps.disabled}>Sign out</button>
                 )}
                 buttonText='Sign out'
                 onLogoutSuccess={this.logout}

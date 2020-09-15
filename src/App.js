@@ -36,7 +36,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Navbar getUser={this.getUser} />
+          <Navbar user={this.state.user} getUser={this.getUser} />
           <Route exact path="/" render={props => (
             <React.Fragment>
               <Content posts={this.state.posts} />
