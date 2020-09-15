@@ -113,7 +113,7 @@ li a:hover {
 
 .blog-content {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   justify-content: center;
   column-gap: 20px;
   padding: 0 100px 100px 100px;
@@ -123,7 +123,7 @@ li a:hover {
 .post-card {
   display: grid;
   height: 400px;
-  grid-template-rows: 3fr 9fr 3fr;
+  grid-template-rows: 10fr 2fr;
   box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.3);
   margin-top: 20px;
   border-radius: 8px;
@@ -133,15 +133,19 @@ li a:hover {
 .post-card .card-header {
   border-radius: 8px 8px 0 0;
   justify-self: start;
-  align-self: center;
   padding: 0 20px;
+}
+
+.post-category {
+  color: #FF596C;
+  font-weight: 600;
 }
 
 .post-card .card-body {
   position: relative;
   background-size: cover !important;
   justify-self: start;
-  padding: 10px 20px;
+  border-radius: 8px 8px 0 0 ;
   width: 100%;
 }
 

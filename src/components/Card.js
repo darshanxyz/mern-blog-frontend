@@ -37,16 +37,17 @@ class Card extends Component {
   render() {
     return (
       <div className="post-card">
-        <div className="card-header">
-          <h3>{this.props.post.title}</h3>
-        </div>
         <div className="card-body" style={{ backgroundImage: `url("${this.state.imageLink}")` }}>
           {/* <p>{this.props.post.description.length > 300 ? this.props.post.description.slice(0, 300) + ' ...' : this.props.post.description}</p> */}
         </div>
+        <div className="card-header">
+          <h3 className="post-title">{this.props.post.title}</h3>
+          <h5 className="post-category">{this.props.post.category}</h5>
+        </div>
         <div className="card-footer">
-          <button onClick={this.deletePost}>Delete Post</button>
-          <button onClick={this.editPost}>Edit Post</button>
-          <button onClick={this.readPost}>Read Post</button>
+          <button onClick={this.deletePost}>Delete</button>
+          <button onClick={this.editPost}>Edit</button>
+          <button style={{ backgroundColor: '#4190c8', color: '#FFF' }} onClick={this.readPost}>Read</button>
         </div>
       </div>
     );
