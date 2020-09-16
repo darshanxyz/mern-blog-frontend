@@ -28,7 +28,7 @@ a {
   box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.3);
   padding: 0 6%;
   background-color: #FFF;
-  z-index: 2;
+  z-index: 5;
 }
 
 ul {
@@ -108,7 +108,7 @@ li a:hover {
   font-size: 12px;
   background-color: #FFF;
   color: #393939;
-  z-index: 2;
+  z-index: 5;
 }
 
 .blog-content {
@@ -123,17 +123,50 @@ li a:hover {
 .post-card {
   display: grid;
   height: 400px;
-  grid-template-rows: 10fr 2fr;
+  grid-template-rows: 12fr;
   box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.3);
   margin-top: 20px;
-  border-radius: 8px;
   background-color: #FFF;
+  border-radius: 8px;
+  transition: .1s ease-in-out;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.9;
+  transition: .1s ease-in-out;
+  z-index: 3;
+  background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
+  display: grid;
+  grid-template-rows: 12fr;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.overlay:hover {
+  opacity: 1;
+}
+
+.post-card:hover {
+  transform: translateY(-1%);
+  box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.8);
+}
+
+.card-header .post-title {
+  margin-top: 0px;
+  color: #FFF;
 }
 
 .post-card .card-header {
-  border-radius: 8px 8px 0 0;
   justify-self: start;
   padding: 0 20px;
+  align-self: end;
 }
 
 .post-category {
@@ -145,20 +178,23 @@ li a:hover {
   position: relative;
   background-size: cover !important;
   justify-self: start;
-  border-radius: 8px 8px 0 0 ;
+  border-radius: 8px;
   width: 100%;
 }
 
 .post-card .card-footer {
-  background-color: #FFF;
   width: 100%;
   padding: 20px;
-  border-radius: 0 0 8px 8px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   column-gap: 25px;
   justify-self: center;
   align-items: center;
+}
+
+.post-card .card-footer h5 {
+  color: #EAEAEA;
+  font-weight: normal;
 }
 
 .post-card .card-footer a {
@@ -198,12 +234,17 @@ li a:hover {
   background-repeat: no-repeat;
 }
 
+.action-btns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) 10fr;
+  column-gap: 20px;
+}
+
 .cta-button {
   padding: 15px;
   border: none;
   border-radius: 3px;
   cursor: pointer;
-  grid-column: 1/2;
 }
 
 .post-title {
