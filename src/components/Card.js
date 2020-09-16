@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { FaHeart, FaComments } from 'react-icons/fa';
 class Card extends Component {
 
   state = {
@@ -28,7 +28,15 @@ class Card extends Component {
               <h3 className="post-title">{this.props.post.title}</h3>
             </div>
             <div className="card-footer">
-              <h5>{this.props.post.author}</h5>
+              <h5 className="post-author">{this.props.post.author}</h5>
+              <div className="post-interactions">
+                <h5 className="post-likes">
+                  <FaHeart color="#FF596C" />
+                  <p style={{ color: '#EAEAEA', margin: '0 5px' }}>45</p>
+                  <FaComments color="#4190c8" />
+                  <p style={{ color: '#EAEAEA', margin: '0 5px' }}>45</p>
+                </h5>
+              </div>
             </div>
           </div>
         </div>
