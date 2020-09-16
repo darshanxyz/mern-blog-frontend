@@ -39,15 +39,20 @@ class Post extends Component {
   render() {
     return (
       <div className="post-page">
-        <h2 className="post-title">{this.state.post.title}</h2>
-        <p className="post-author">Written by {this.state.post.author} on {new Date(this.state.post.createdAt).getDate() +
-          '-' + new Date(this.state.post.createdAt).getMonth() + '-' + new Date(this.state.post.createdAt).getFullYear()}</p>
-        <div className="post-image" style={{ backgroundImage: `url("${this.state.post.imageLink}")` }}></div>
+        <div className="post-header">
+          <div style={{ margin: '10px 0' }}>
+            <h5 className="post-category">{this.state.post.category}</h5>
+            <h2 className="post-title">{this.state.post.title}</h2>
+          </div>
+          <h5 className="post-author">{this.state.post.author}</h5>
+          <h5 className="post-date">{new Date(this.state.post.createdAt).getDate() +
+            ' ' + new Date(this.state.post.createdAt).toLocaleString('default', { month: 'long' }) + ', ' + new Date(this.state.post.createdAt).getFullYear()}</h5>
+        </div>
+        <img className="post-image" alt={this.state.post.title} src={this.state.post.imageLink}></img>
         <p className="post-description">{this.state.post.description}</p>
         <div className="action-btns">
-          <button className="cta-button" onClick={this.editPost}>Edit Post</button>
-          <button className="cta-button" onClick={this.deletePost}>Delete Post</button>
-          {/* <a href="/" className="cta-button" >Home</a> */}
+          <button className="cta-button" style={{ backgroundColor: '#4190c8' }} onClick={this.editPost}>Edit</button>
+          <button className="cta-button" style={{ backgroundColor: '#FF596C' }} onClick={this.deletePost}>Delete</button>
         </div>
       </div>
     );
