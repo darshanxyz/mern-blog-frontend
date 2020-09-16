@@ -11,7 +11,13 @@ import Post from './components/Post';
 
 class App extends Component {
   state = {
-    posts: []
+    posts: [],
+    user: [{
+      isLoggedIn: false,
+      accessToken: '',
+      firstName: '',
+      email: ''
+    }]
   }
 
   componentDidMount() {
@@ -22,11 +28,15 @@ class App extends Component {
       });
   }
 
+  getUser = (user) => {
+    this.setState({ user });
+  }
+
   render() {
     return (
       <Router>
         <div className="App">
-          <Navbar />
+          <Navbar user={this.state.user} getUser={this.getUser} />
           <Route exact path="/" render={props => (
             <React.Fragment>
               <Content posts={this.state.posts} />

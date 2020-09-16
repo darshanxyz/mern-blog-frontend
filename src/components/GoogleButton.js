@@ -9,25 +9,21 @@ const responseGoogle = (response) => {
 class GoogleButton extends Component {
   constructor(props) {
     super();
-
-    this.state = {
-      isLoggedIn: false,
-      accessToken: '',
-      firstName: ''
-    };
-
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
+    props.getUser.bind(this);
   }
 
   login(response) {
     console.log(response);
     if (response.accessToken) {
-      this.setState(state => ({
+      const user = {
         isLoggedIn: true,
         accessToken: response.accessToken,
-        firstName: response.profileObj.givenName
-      }));
+        firstName: response.profileObj.givenName,
+        email: response.profileObj.email
+      };
+      this.props.getUser(user);
     }
   }
 
@@ -35,20 +31,22 @@ class GoogleButton extends Component {
     this.setState(state => ({
       isLoggedIn: false,
       accessToken: '',
-      firstName: ''
+      firstName: '',
+      email: ''
     }));
+    window.location = '/';
   }
 
   render() {
     return (
       <div className="google-btn">
         {
-          this.state.isLoggedIn ?
+          this.props.user.isLoggedIn ?
             <div>
               <GoogleLogout
                 clientId={CLIENT_ID}
                 render={renderProps => (
-                  <button onClick={renderProps.onClick} disabled={renderProps.disabled}>Hi, {this.state.firstName}, sign out?</button>
+                  <button onClick={renderProps.onClick} disabled={renderProps.disabled}>Sign out</button>
                 )}
                 buttonText='Sign out'
                 onLogoutSuccess={this.logout}
@@ -63,6 +61,7 @@ class GoogleButton extends Component {
               buttonText="Sign In"
               onSuccess={this.login}
               onFailure={responseGoogle}
+              isSignedIn={true}
               cookiePolicy={'single_host_origin'}
             />
         }

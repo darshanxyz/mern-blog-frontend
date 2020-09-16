@@ -24,6 +24,18 @@ class Post extends Component {
     window.location = `/${this.state.post._id}/edit`;
   }
 
+  deletePost = event => {
+    event.preventDefault();
+    const post = {
+      id: this.state.id
+    }
+    console.log(post);
+    axios.delete(`http://localhost:4000/${this.state.id}`, post)
+      .then(res => {
+        window.location = "/"
+      })
+  }
+
   render() {
     return (
       <div className="post-page">
@@ -34,6 +46,7 @@ class Post extends Component {
         <p className="post-description">{this.state.post.description}</p>
         <div className="action-btns">
           <button className="cta-button" onClick={this.editPost}>Edit Post</button>
+          <button className="cta-button" onClick={this.deletePost}>Delete Post</button>
           {/* <a href="/" className="cta-button" >Home</a> */}
         </div>
       </div>
