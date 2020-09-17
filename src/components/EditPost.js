@@ -13,7 +13,6 @@ class EditPost extends Component {
 
   componentDidMount() {
     const { match: { params } } = this.props;
-    console.log(params);
     axios.get(`http://localhost:4000/${params.postId}`)
       .then(res => {
         const post = res.data;
@@ -32,7 +31,7 @@ class EditPost extends Component {
     const { match: { params } } = this.props;
     axios.patch(`http://localhost:4000/${params.postId}`, post)
       .then(res => {
-        window.location = "/"
+        window.location = `http://localhost:3000/${params.postId}`
       })
   }
 
