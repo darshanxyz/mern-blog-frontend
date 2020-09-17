@@ -20,7 +20,7 @@ class AddPost extends Component {
       title: this.state.title,
       category: this.state.category,
       description: this.state.description,
-      author: this.state.author,
+      author: this.props.user.firstName,
     }
     console.log('data', post);
     axios.post('http://localhost:4000', post)
@@ -41,10 +41,6 @@ class AddPost extends Component {
     this.setState({ description: event.target.value });
   }
 
-  handleAuthorChange = event => {
-    this.setState({ author: this.props.user.firstName });
-  }
-
   render() {
     return (
       <div className="add-post">
@@ -56,8 +52,6 @@ class AddPost extends Component {
           <input type="text" name="category" onChange={this.handleCategoryChange} />
           <label>Description</label>
           <textarea rows="10" cols="50" name="description" onChange={this.handleDescriptionChange} />
-          <label>Author</label>
-          <input type="text" name="author" onChange={this.handleAuthorChange} value={this.props.user.firstName} />
           <button type="submit">Add Post</button>
         </form>
       </div>

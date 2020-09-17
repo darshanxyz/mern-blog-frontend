@@ -27,10 +27,10 @@ class Post extends Component {
   deletePost = event => {
     event.preventDefault();
     const post = {
-      id: this.state.id
+      id: this.state.post._id
     }
     console.log(post);
-    axios.delete(`http://localhost:4000/${this.state.id}`, post)
+    axios.delete(`http://localhost:4000/${post.id}`, post)
       .then(res => {
         window.location = "/"
       })

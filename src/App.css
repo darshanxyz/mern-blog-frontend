@@ -114,6 +114,7 @@ li a:hover {
   column-gap: 20px;
   padding: 0 6%;
   z-index: 1;
+  margin-bottom: 80px;
 }
 
 .post-card {
