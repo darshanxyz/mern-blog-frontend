@@ -43,7 +43,13 @@ class App extends Component {
             </React.Fragment>
           )} />
           <Switch>
-            <Route path="/addPost" component={AddPost} />
+            <Route path="/addPost" render={
+              props => (
+                <React.Fragment>
+                  <AddPost user={this.state.user} />
+                </React.Fragment>
+              )
+            } />
             <Route path="/:postId/edit" component={EditPost} />
             <Route path="/:postId" component={Post} />
           </Switch>

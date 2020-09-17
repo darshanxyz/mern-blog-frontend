@@ -3,6 +3,10 @@ import axios from 'axios';
 
 class AddPost extends Component {
 
+  constructor(props) {
+    super();
+  }
+
   state = {
     title: '',
     category: '',
@@ -38,7 +42,7 @@ class AddPost extends Component {
   }
 
   handleAuthorChange = event => {
-    this.setState({ author: event.target.value });
+    this.setState({ author: this.props.user.firstName });
   }
 
   render() {
@@ -53,7 +57,7 @@ class AddPost extends Component {
           <label>Description</label>
           <textarea rows="10" cols="50" name="description" onChange={this.handleDescriptionChange} />
           <label>Author</label>
-          <input type="text" name="author" onChange={this.handleAuthorChange} />
+          <input type="text" name="author" onChange={this.handleAuthorChange} value={this.props.user.firstName} />
           <button type="submit">Add Post</button>
         </form>
       </div>
