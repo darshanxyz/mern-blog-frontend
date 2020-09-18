@@ -4,17 +4,20 @@ import { FaHeart, FaComments } from 'react-icons/fa';
 
 class Post extends Component {
 
+  postliked = ''
+
   state = {
     posts: [],
     post: {}
   }
+
   componentDidMount() {
     const { match: { params } } = this.props;
+    this.postId = params.postId;
     this.setState({
       posts: this.props.posts,
       post: this.props.posts.filter(post => post._id === params.postId)[0]
     });
-
   }
 
   editPost = event => {
@@ -30,6 +33,31 @@ class Post extends Component {
       .then(res => {
         window.location = "/"
       })
+  }
+
+  handleLikes = () => {
+    const { match: { params } } = this.props;
+    const postliked = localStorage.getItem(params.postId);
+    postliked === 'true' ? localStorage.setItem(params.postId, 'false') : localStorage.setItem(params.postId, 'true');
+    const newLikesCount = postliked === 'true' ? this.state.post.likes - 1 : this.state.post.likes + 1;
+    const postToPatch = this.state.post;
+    postToPatch.likes = newLikesCount;
+    axios.patch(`http://localhost:4000/${params.postId}`, postToPatch)
+      .then(res => {
+        this.setState((prevState) => ({
+          post: postToPatch
+        }));
+      });
+  }
+
+  getHeartColor = () => {
+    const { match: { params } } = this.props;
+    if (localStorage.getItem(params.postId) === 'true') {
+      return '#FF596C'
+    }
+    else {
+      return '#EAEAEA'
+    }
   }
 
   render() {
@@ -48,7 +76,7 @@ class Post extends Component {
         <p className="post-description">{this.state.post.description}</p>
         <div className="post-interactions">
           <h3 className="post-likes">
-            <FaHeart color="#FF596C" />
+            <FaHeart onClick={this.handleLikes} color={this.getHeartColor()} />
             <p>{this.state.post.likes}</p>
             <FaComments color="#4190c8" />
             <p>45</p>
