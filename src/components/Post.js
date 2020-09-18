@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { FaHeart, FaComments } from 'react-icons/fa';
 
 class Post extends Component {
 
@@ -45,6 +46,14 @@ class Post extends Component {
         </div>
         <img className="post-image" alt={this.state.post.title} src={this.state.post.imageLink}></img>
         <p className="post-description">{this.state.post.description}</p>
+        <div className="post-interactions">
+          <h3 className="post-likes">
+            <FaHeart color="#FF596C" />
+            <p>{this.state.post.likes}</p>
+            <FaComments color="#4190c8" />
+            <p>45</p>
+          </h3>
+        </div>
         <div className="action-btns">
           <button className="cta-button" style={{ backgroundColor: '#4190c8' }} onClick={this.editPost}>Edit</button>
           <button className="cta-button" style={{ backgroundColor: '#FF596C' }} onClick={this.deletePost}>Delete</button>
