@@ -3,21 +3,17 @@ import axios from 'axios';
 
 class Post extends Component {
 
-  constructor(props) {
-    super();
-  }
-
   state = {
+    posts: [],
     post: {}
   }
   componentDidMount() {
     const { match: { params } } = this.props;
-    axios.get(`http://localhost:4000/${params.postId}`)
-      .then(res => {
-        const post = res.data;
-        this.setState({ post });
-        console.log(this.state);
-      });
+    this.setState({
+      posts: this.props.posts,
+      post: this.props.posts.filter(post => post._id === params.postId)[0]
+    });
+
   }
 
   editPost = event => {
@@ -29,7 +25,6 @@ class Post extends Component {
     const post = {
       id: this.state.post._id
     }
-    console.log(post);
     axios.delete(`http://localhost:4000/${post.id}`, post)
       .then(res => {
         window.location = "/"

@@ -51,7 +51,12 @@ class App extends Component {
               )
             } />
             <Route path="/:postId/edit" component={EditPost} />
-            <Route path="/:postId" component={Post} />
+            <Route path="/:postId" render={props => (
+              <React.Fragment>
+                {this.state.posts.length > 0 ? <Post posts={this.state.posts} {...props} /> : null}
+              </React.Fragment>
+            )} />
+            {/* <Route path="/:postId" component={Post} /> */}
           </Switch>
           <Footer />
         </div>
