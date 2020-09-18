@@ -32,7 +32,7 @@ class Card extends Component {
               <div className="post-interactions">
                 <h5 className="post-likes">
                   <FaHeart color="#FF596C" />
-                  <p style={{ color: '#EAEAEA', margin: '0 5px' }}>45</p>
+                  <p style={{ color: '#EAEAEA', margin: '0 5px' }}>{this.props.post.likes}</p>
                   <FaComments color="#4190c8" />
                   <p style={{ color: '#EAEAEA', margin: '0 5px' }}>45</p>
                 </h5>
