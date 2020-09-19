@@ -80,8 +80,13 @@ li a:hover {
   border-bottom: 1px #EAEAEA solid;
 }
 
+.nav-sub-menu li:nth-child(2) {
+  border-bottom: 1px #EAEAEA solid;
+}
+
 .nav label {
   cursor: pointer;
+  color: #393939;
 }
 
 .nav label:hover {
@@ -151,7 +156,7 @@ li a:hover {
 }
 
 .post-card:hover {
-  transform: translateY(-1%);
+  transform: translateY(-2%);
   box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.8);
 }
 
@@ -270,26 +275,6 @@ li a:hover {
   font-size: 1.025rem;
 }
 
-.cta-button {
-  padding: 15px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  margin-right: 10px;
-  color: #FFF;
-  transition: .1s ease-in-out;
-  min-width: 80px;
-}
-
-.cta-button:focus {
-  outline: none;
-}
-
-.cta-button:hover {
-  transform: translateY(-2%);
-  box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.3);
-}
-
 .post-header {
   justify-self: start;
 }
@@ -363,4 +348,51 @@ form input, textarea {
   border: none;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.manage-post-page {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 12fr;
+  row-gap: 20px;
+  margin: 30px auto 100px;
+  padding: 0 6%;
+  max-width: 1000px;
+  z-index: 1;
+  position: relative;
+}
+
+.manage-post-page .post-detail {
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  padding: 10px;
+}
+
+.action-btns {
+  align-self: center;
+  justify-self: end;
+  display: grid;
+  grid-template-columns: 6fr 6fr;
+  column-gap: 10px;
+}
+
+.cta-button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #FFF;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #FFF;
+  transition: .1s ease-in-out;
+  min-width: 80px;
+  font-size: 18px;
+}
+
+.cta-button:focus {
+  outline: none;
+}
+
+.cta-button:hover {
+  transform: translateY(-5%);
+  box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.3);
 }

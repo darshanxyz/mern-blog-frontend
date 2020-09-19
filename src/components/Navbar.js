@@ -20,6 +20,7 @@ class Navbar extends Component {
                 <label className="closer" htmlFor="dropclose">Hi, {this.props.user.firstName}</label>
                 <ul className="nav-sub-menu">
                   <li><a href="/addPost">Add Post</a></li>
+                  <li><a href="/managePosts">Manage Posts</a></li>
                   <li><GoogleButton user={this.props.user} getUser={this.props.getUser} /></li>
                 </ul>
                 <input type="radio" name="menuopt" id="dropclose" />

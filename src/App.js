@@ -8,16 +8,17 @@ import axios from 'axios';
 import AddPost from './components/AddPost';
 import EditPost from './components/EditPost';
 import Post from './components/Post';
+import ManagePosts from './components/ManagePosts';
 
 class App extends Component {
   state = {
     posts: [],
-    user: [{
+    user: {
       isLoggedIn: false,
       accessToken: '',
       firstName: '',
       email: ''
-    }]
+    }
   }
 
   componentDidMount() {
@@ -47,6 +48,14 @@ class App extends Component {
               props => (
                 <React.Fragment>
                   <AddPost user={this.state.user} />
+                </React.Fragment>
+              )
+            } />
+            <Route path="/managePosts" render={
+              props => (
+                <React.Fragment>
+                  {(this.state.posts.length > 0) && (this.state.user.accessToken.length > 0)
+                    ? <ManagePosts posts={this.state.posts} user={this.state.user} /> : null}
                 </React.Fragment>
               )
             } />

@@ -21,21 +21,6 @@ class Post extends Component {
     });
   }
 
-  editPost = event => {
-    window.location = `/${this.state.post._id}/edit`;
-  }
-
-  deletePost = event => {
-    event.preventDefault();
-    const post = {
-      id: this.state.post._id
-    }
-    axios.delete(`http://localhost:4000/${post.id}`, post)
-      .then(res => {
-        window.location = "/"
-      })
-  }
-
   handleLikes = () => {
     const { match: { params } } = this.props;
     const postliked = localStorage.getItem(params.postId);
@@ -83,10 +68,6 @@ class Post extends Component {
             <p>45</p>
           </h3>
         </div>
-        {/* <div className="action-btns">
-          <button className="cta-button" style={{ backgroundColor: '#4190c8' }} onClick={this.editPost}>Edit</button>
-          <button className="cta-button" style={{ backgroundColor: '#FF596C' }} onClick={this.deletePost}>Delete</button>
-        </div> */}
         <h2>More on <span style={{ color: '#FF596C' }}>dblogr</span></h2>
         <div className="more-posts">
           {this.props.posts.filter(post => post._id !== this.postId).map((post, index) => (
