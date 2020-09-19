@@ -87,7 +87,7 @@ class Post extends Component {
           <button className="cta-button" style={{ backgroundColor: '#4190c8' }} onClick={this.editPost}>Edit</button>
           <button className="cta-button" style={{ backgroundColor: '#FF596C' }} onClick={this.deletePost}>Delete</button>
         </div> */}
-        <h2>More on <span style={{ color: '#FF596C' }}>PoemBlog</span></h2>
+        <h2>More on <span style={{ color: '#FF596C' }}>dblogr</span></h2>
         <div className="more-posts">
           {this.props.posts.filter(post => post._id !== this.postId).map((post, index) => (
             (index < 3) ? <Card key={post._id} post={post} /> : null
