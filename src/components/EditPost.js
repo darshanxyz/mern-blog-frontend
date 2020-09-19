@@ -26,7 +26,8 @@ class EditPost extends Component {
       title: this.state.title,
       category: this.state.category,
       description: this.state.description,
-      author: this.state.author
+      author: this.props.user.firstName,
+      createdAt: Date.now()
     }
     const { match: { params } } = this.props;
     axios.patch(`http://localhost:4000/${params.postId}`, post)
@@ -47,10 +48,6 @@ class EditPost extends Component {
     this.setState({ description: event.target.value });
   }
 
-  handleAuthorChange = event => {
-    this.setState({ author: event.target.value });
-  }
-
   render() {
     return (
       <div className="edit-post">
@@ -62,8 +59,6 @@ class EditPost extends Component {
           <input type="text" name="category" onChange={this.handleCategoryChange} value={this.state.category || ''} />
           <label>Description</label>
           <textarea rows="10" cols="50" name="description" onChange={this.handleDescriptionChange} value={this.state.description || ''} />
-          <label>Author</label>
-          <input type="text" name="author" onChange={this.handleAuthorChange} value={this.state.author || ''} />
           <button type="submit">Edit Post</button>
         </form>
       </div>
