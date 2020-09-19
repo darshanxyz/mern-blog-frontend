@@ -112,12 +112,48 @@ li a:hover {
   z-index: 5;
 }
 
+.main-content {
+  display: grid;
+  padding: 0 6%;
+}
+
+.search-form {
+  display: grid;
+  max-width: 500px;
+  grid-template-columns: 12r;
+  margin-top: 30px;
+  column-gap: 20px;
+}
+
+.search-form .input-container {
+  display: grid;
+  grid-template-columns: 11fr auto;
+  align-items: center;
+  border-bottom: 1px solid #EAEAEA;
+  column-gap: 0px;
+}
+
+.search-form input {
+  box-shadow: none;
+}
+
+.search-form input:focus {
+  outline: none;
+}
+
+.search-btn {
+  border: none;
+  border-radius: 3px;
+  background-color: #FFF;
+  padding: 10px;
+  cursor: pointer;
+}
+
 .blog-content {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
   justify-content: center;
   column-gap: 20px;
-  padding: 0 6%;
   z-index: 1;
   margin-bottom: 80px;
 }
