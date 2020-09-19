@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { FaHeart, FaComments } from 'react-icons/fa';
+import Card from './Card';
 
 class Post extends Component {
 
@@ -82,11 +83,17 @@ class Post extends Component {
             <p>45</p>
           </h3>
         </div>
-        <div className="action-btns">
+        {/* <div className="action-btns">
           <button className="cta-button" style={{ backgroundColor: '#4190c8' }} onClick={this.editPost}>Edit</button>
           <button className="cta-button" style={{ backgroundColor: '#FF596C' }} onClick={this.deletePost}>Delete</button>
+        </div> */}
+        <h2>More on <span style={{ color: '#FF596C' }}>PoemBlog</span></h2>
+        <div className="more-posts">
+          {this.props.posts.filter(post => post._id !== this.postId).map((post, index) => (
+            (index < 3) ? <Card key={post._id} post={post} /> : null
+          ))}
         </div>
-      </div>
+      </div >
     );
   }
 }
