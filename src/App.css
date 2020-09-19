@@ -373,7 +373,7 @@ form input, textarea {
   justify-self: end;
   display: grid;
   grid-template-columns: 6fr 6fr;
-  column-gap: 10px;
+  column-gap: 20px;
 }
 
 .cta-button {
@@ -384,7 +384,6 @@ form input, textarea {
   cursor: pointer;
   color: #FFF;
   transition: .1s ease-in-out;
-  min-width: 80px;
   font-size: 18px;
 }
 
