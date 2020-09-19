@@ -27,6 +27,13 @@ a {
   z-index: 5;
 }
 
+.logo a {
+  align-items: center;
+  display: grid;
+  grid-template-columns: auto 11fr;
+  column-gap: 5px;
+}
+
 ul {
   list-style-type: none;
   justify-self: end;
