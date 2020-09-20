@@ -3,10 +3,6 @@ import axios from 'axios';
 
 class EditPost extends Component {
 
-  constructor(props) {
-    super();
-  }
-
   state = {
     post: {}
   }
@@ -27,7 +23,8 @@ class EditPost extends Component {
       category: this.state.category,
       description: this.state.description,
       author: this.props.user.firstName,
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      content: this.state.content
     }
     const { match: { params } } = this.props;
     axios.patch(`http://localhost:4000/${params.postId}`, post)
@@ -48,6 +45,25 @@ class EditPost extends Component {
     this.setState({ description: event.target.value });
   }
 
+  handleRemoveField = (event, index) => {
+    event.preventDefault();
+    const content = this.state.content;
+    content.splice(index, 1);
+    this.setState({
+      content: content
+    })
+  }
+
+  handleContentChange = (event, index) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    const content = this.state.content;
+    content[index][name] = value;
+    this.setState({
+      content: content
+    })
+  }
+
   render() {
     return (
       <div className="edit-post">
@@ -59,6 +75,19 @@ class EditPost extends Component {
           <input type="text" name="category" onChange={this.handleCategoryChange} value={this.state.category || ''} />
           <label>Description</label>
           <textarea rows="10" cols="50" name="description" onChange={this.handleDescriptionChange} value={this.state.description || ''} />
+          {
+            this.state.content
+              ?
+              this.state.content.map((item, index) => (
+                <div className="section-content" key={index}>
+                  <label>{item.contentType}</label>
+                  <button className="section-btn" onClick={event => this.handleRemoveField(event, index)}>Remove</button>
+                  <textarea rows="10" cols="50" name="content" value={item.content} onChange={event => this.handleContentChange(event, index)} />
+                </div>
+              ))
+              :
+              null
+          }
           <button type="submit">Edit Post</button>
         </form>
       </div>

@@ -389,6 +389,32 @@ color: #FF596C;
   align-self: baseline;
 }
 
+.add-post form label, .edit-post form label {
+  text-transform: capitalize;
+}
+
+.edit-post .section-content {
+  display: grid;
+  row-gap: 10px;
+  align-items: center;
+}
+
+.edit-post .section-content label {
+  grid-column: 1/6;
+  grid-row: 1/2;
+}
+
+.edit-post .section-content .section-btn {
+  justify-self: end;
+  grid-column: 6/13;
+  grid-row: 1/2;
+}
+
+.edit-post .section-content textarea {
+  grid-row: 2/3;
+  grid-column: 1/13;
+}
+
 form input, textarea {
   border: none;
   border-radius: 3px;
