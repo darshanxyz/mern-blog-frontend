@@ -22,8 +22,8 @@ class AddPost extends Component {
       category: this.state.category,
       description: this.state.description,
       author: this.props.user.firstName,
+      content: this.state.content
     }
-    console.log('data', post);
     axios.post('http://localhost:4000', post)
       .then(res => {
         window.location = "/"
