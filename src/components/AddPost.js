@@ -10,7 +10,7 @@ class AddPost extends Component {
   state = {
     title: '',
     category: '',
-    description: 'helo',
+    description: '',
     author: '',
     content: []
   }
@@ -78,8 +78,8 @@ class AddPost extends Component {
           <input type="text" name="title" onChange={this.handleTitleChange} />
           <label>Category</label>
           <input type="text" name="category" onChange={this.handleCategoryChange} />
-          {/* <label>Description</label>
-          <textarea rows="10" cols="50" name="description" onChange={this.handleDescriptionChange} /> */}
+          <label>Description</label>
+          <textarea rows="10" cols="50" name="description" onChange={this.handleDescriptionChange} />
           {this.state.content.map((item, index) => (
             <div key={index}>
               <textarea rows="10" cols="50" name="content" value={item.content} onChange={event => this.handleContentChange(event, index)} />

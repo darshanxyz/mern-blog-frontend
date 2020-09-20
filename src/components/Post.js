@@ -58,6 +58,9 @@ class Post extends Component {
           <h5 className="post-date">{new Date(this.state.post.createdAt).getDate() +
             ' ' + new Date(this.state.post.createdAt).toLocaleString('default', { month: 'long' }) + ', ' + new Date(this.state.post.createdAt).getFullYear()}</h5>
         </div>
+        <p className="post-description">
+          {this.state.post.description}
+        </p>
         <img className="post-image" alt={this.state.post.title} src={this.state.post.imageLink}></img>
         {this.state.posts.length > 0 ? this.state.post.content.map((content, index) => (
           <p key={index} className="post-description">
