@@ -24,6 +24,7 @@ class AddPost extends Component {
       author: this.props.user.firstName,
       content: this.state.content
     }
+    console.log(post);
     axios.post('http://localhost:4000', post)
       .then(res => {
         console.log(res);
@@ -43,6 +44,13 @@ class AddPost extends Component {
     this.setState({ description: event.target.value });
   }
 
+  handleAddSubheading = event => {
+    event.preventDefault();
+    this.setState((prevState) => ({
+      content: [...prevState.content, { 'contentType': 'subheading', 'content': '' }]
+    }));
+  }
+
   handleAddParagraph = event => {
     event.preventDefault();
     this.setState((prevState) => ({
@@ -50,7 +58,7 @@ class AddPost extends Component {
     }));
   }
 
-  handleRemoveParagraph = (event, index) => {
+  handleRemoveField = (event, index) => {
     event.preventDefault();
     const content = this.state.content;
     content.splice(index, 1);
@@ -83,10 +91,14 @@ class AddPost extends Component {
           {this.state.content.map((item, index) => (
             <div key={index}>
               <textarea rows="10" cols="50" name="content" value={item.content} onChange={event => this.handleContentChange(event, index)} />
-              <button className="" onClick={event => this.handleRemoveParagraph(event, index)}>Remove</button>
+              <button className="" onClick={event => this.handleRemoveField(event, index)}>Remove</button>
             </div>
           ))}
-          <button onClick={this.handleAddParagraph} type="submit">Add Paragraph</button>
+          <div className="add-content-btns">
+            <button onClick={this.handleAddSubheading} type="submit">Add Subheading</button>
+            <button onClick={this.handleAddParagraph} type="submit">Add Paragraph</button>
+            {JSON.stringify(this.state.content)}
+          </div>
           <button type="submit">Add Post</button>
         </form>
       </div>

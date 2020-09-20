@@ -62,11 +62,23 @@ class Post extends Component {
           {this.state.post.description}
         </p>
         <img className="post-image" alt={this.state.post.title} src={this.state.post.imageLink}></img>
-        {this.state.posts.length > 0 ? this.state.post.content.map((content, index) => (
-          <p key={index} className="post-description">
-            {content.content}
-          </p>
-        )) : null}
+        {
+          this.state.posts.length > 0
+            ?
+            this.state.post.content.map((content, index) => (
+              content.contentType === 'paragraph'
+                ?
+                <p key={index} className="post-paragraph">
+                  {content.content}
+                </p>
+                :
+                <h3 key={index} className="post-subheading">
+                  {content.content}
+                </h3>
+            ))
+            :
+            null
+        }
         <div className="post-interactions">
           <h3 className="post-likes">
             <FaHeart onClick={this.handleLikes} color={this.getHeartColor()} />

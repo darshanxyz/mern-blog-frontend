@@ -346,6 +346,20 @@ color: #FF596C;
 .post-description {
   line-height: 1.8;
   text-align: left;
+  font-size: 1.125rem;
+  color: #393939;
+}
+
+.post-subheading {
+  line-height: 1.8;
+  text-align: left;
+  font-size: 1.2rem;
+  color: #393939;
+}
+
+.post-paragraph {
+  line-height: 1.8;
+  text-align: left;
   font-size: 1.025rem;
   color: #393939;
 }
@@ -389,6 +403,17 @@ form input, textarea {
   border: none;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.add-post .add-content-btns {
+  display: grid;
+  grid-template-columns: 2fr 2fr 8fr;
+  column-gap: 15px;
+  margin-bottom: 50px;
+}
+
+.add-post .add-content-btns button {
+  width: 100%;
 }
 
 .manage-post-page {
