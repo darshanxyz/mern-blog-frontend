@@ -25,12 +25,14 @@ class App extends Component {
     axios.get(`http://localhost:4000/`)
       .then(res => {
         const posts = res.data;
-        this.setState({ posts });
+        this.setState({
+          posts: posts
+        });
       });
   }
 
   getUser = (user) => {
-    this.setState({ user });
+    this.setState({ user: user });
   }
 
   render() {
@@ -40,7 +42,7 @@ class App extends Component {
           <Navbar user={this.state.user} getUser={this.getUser} />
           <Route exact path="/" render={props => (
             <React.Fragment>
-              <Content posts={this.state.posts} />
+              {this.state.posts.length > 0 ? <Content posts={this.state.posts} /> : null}
             </React.Fragment>
           )} />
           <Switch>

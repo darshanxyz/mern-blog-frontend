@@ -10,7 +10,7 @@ class AddPost extends Component {
   state = {
     title: '',
     category: '',
-    description: '',
+    description: 'helo',
     author: '',
     content: []
   }
@@ -26,7 +26,8 @@ class AddPost extends Component {
     }
     axios.post('http://localhost:4000', post)
       .then(res => {
-        window.location = "/"
+        console.log(res);
+        window.location = "/" + res.data._id
       });
   }
 

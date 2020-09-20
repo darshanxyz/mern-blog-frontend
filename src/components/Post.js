@@ -14,11 +14,11 @@ class Post extends Component {
 
   componentDidMount() {
     const { match: { params } } = this.props;
-    this.postId = params.postId;
     this.setState({
       posts: this.props.posts,
       post: this.props.posts.filter(post => post._id === params.postId)[0]
     });
+    this.postId = params.postId;
   }
 
   handleLikes = () => {
@@ -59,7 +59,11 @@ class Post extends Component {
             ' ' + new Date(this.state.post.createdAt).toLocaleString('default', { month: 'long' }) + ', ' + new Date(this.state.post.createdAt).getFullYear()}</h5>
         </div>
         <img className="post-image" alt={this.state.post.title} src={this.state.post.imageLink}></img>
-        <p className="post-description">{this.state.post.description}</p>
+        {this.state.posts.length > 0 ? this.state.post.content.map((content, index) => (
+          <p key={index} className="post-description">
+            {content.content}
+          </p>
+        )) : null}
         <div className="post-interactions">
           <h3 className="post-likes">
             <FaHeart onClick={this.handleLikes} color={this.getHeartColor()} />
