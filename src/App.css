@@ -360,10 +360,8 @@ color: #FF596C;
 }
 
 .add-post, .edit-post {
-  padding: 0 100px;
-  margin: 0 auto;
-  width: 75%;  
-  margin-top: 20px;
+  margin: 30px auto 100px;
+  width: 50%;  
 }
 
 .add-post form , .edit-post form {

@@ -11,7 +11,8 @@ class AddPost extends Component {
     title: '',
     category: '',
     description: '',
-    author: ''
+    author: '',
+    content: []
   }
 
   handleSubmit = event => {
@@ -41,6 +42,32 @@ class AddPost extends Component {
     this.setState({ description: event.target.value });
   }
 
+  handleAddParagraph = event => {
+    event.preventDefault();
+    this.setState((prevState) => ({
+      content: [...prevState.content, { 'contentType': 'paragraph', 'content': '' }]
+    }));
+  }
+
+  handleRemoveParagraph = (event, index) => {
+    event.preventDefault();
+    const content = this.state.content;
+    content.splice(index, 1);
+    this.setState({
+      content: content
+    })
+  }
+
+  handleContentChange = (event, index) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    const content = this.state.content;
+    content[index][name] = value;
+    this.setState({
+      content: content
+    })
+  }
+
   render() {
     return (
       <div className="add-post">
@@ -50,8 +77,15 @@ class AddPost extends Component {
           <input type="text" name="title" onChange={this.handleTitleChange} />
           <label>Category</label>
           <input type="text" name="category" onChange={this.handleCategoryChange} />
-          <label>Description</label>
-          <textarea rows="10" cols="50" name="description" onChange={this.handleDescriptionChange} />
+          {/* <label>Description</label>
+          <textarea rows="10" cols="50" name="description" onChange={this.handleDescriptionChange} /> */}
+          {this.state.content.map((item, index) => (
+            <div key={index}>
+              <textarea rows="10" cols="50" name="content" value={item.content} onChange={event => this.handleContentChange(event, index)} />
+              <button className="" onClick={event => this.handleRemoveParagraph(event, index)}>Remove</button>
+            </div>
+          ))}
+          <button onClick={this.handleAddParagraph} type="submit">Add Paragraph</button>
           <button type="submit">Add Post</button>
         </form>
       </div>
