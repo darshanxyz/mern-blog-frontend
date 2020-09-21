@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FaHeading, FaParagraph } from 'react-icons/fa';
 import axios from 'axios';
 
 class EditPost extends Component {
@@ -64,6 +65,15 @@ class EditPost extends Component {
     })
   }
 
+  handleAddSection = (event, index, sectionType) => {
+    event.preventDefault();
+    const content = this.state.content
+    content.splice(index + 1, 0, { 'contentType': sectionType, 'content': '' })
+    this.setState({
+      content: content
+    });
+  }
+
   render() {
     return (
       <div className="edit-post">
@@ -81,7 +91,17 @@ class EditPost extends Component {
               this.state.content.map((item, index) => (
                 <div className="section-content" key={index}>
                   <label>{item.contentType}</label>
-                  <button className="section-btn" onClick={event => this.handleRemoveField(event, index)}>Remove</button>
+                  <div className="section-btns">
+                    <button className="section-btn" style={{ backgroundColor: '#4190c8' }} onClick={event => this.handleAddSection(event, index, 'subheading')}>
+                      <h4>+</h4><FaHeading color="#FFF" />
+                    </button>
+                    <button className="section-btn" style={{ backgroundColor: '#4190c8' }} onClick={event => this.handleAddSection(event, index, 'paragraph')}>
+                      <h4>+</h4><FaParagraph color="#FFF" />
+                    </button>
+                    <button className="section-btn" style={{ backgroundColor: '#FF596C' }} onClick={event => this.handleRemoveField(event, index)}>
+                      <h4>Remove Section</h4>
+                    </button>
+                  </div>
                   <textarea rows="10" cols="50" name="content" value={item.content} onChange={event => this.handleContentChange(event, index)} />
                 </div>
               ))
@@ -90,7 +110,7 @@ class EditPost extends Component {
           }
           <button type="submit">Edit Post</button>
         </form>
-      </div>
+      </div >
     );
   }
 }

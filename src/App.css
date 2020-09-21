@@ -375,7 +375,8 @@ color: #FF596C;
 
 .add-post, .edit-post {
   margin: 30px auto 100px;
-  width: 50%;  
+  width: 50%;
+  display: grid;
 }
 
 .add-post form , .edit-post form {
@@ -397,22 +398,28 @@ color: #FF596C;
   display: grid;
   row-gap: 10px;
   align-items: center;
+  grid-template-columns: 3fr 9fr;
 }
 
-.edit-post .section-content label {
-  grid-column: 1/6;
-  grid-row: 1/2;
-}
-
-.edit-post .section-content .section-btn {
+.edit-post .section-content .section-btns {
   justify-self: end;
-  grid-column: 6/13;
-  grid-row: 1/2;
+  display: grid;
+  grid-template-columns: 4fr 4fr 4fr;
+  column-gap: 10px;
+}
+
+.edit-post .section-content .section-btns .section-btn {
+  display: grid;
+  grid-template-columns: auto 5fr;
+  color: #FFF;
+  align-items: center;
+  justify-items: center;
+  border: none;
+  border-radius: 50px;
 }
 
 .edit-post .section-content textarea {
-  grid-row: 2/3;
-  grid-column: 1/13;
+  grid-column: 1/ span 13;
 }
 
 form input, textarea {
@@ -424,7 +431,7 @@ form input, textarea {
 } 
 
 .add-post form button, .edit-post form button {
-  width: 20%;
+  width: auto;
   padding: 15px;
   border: none;
   border-radius: 3px;
