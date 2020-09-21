@@ -392,17 +392,18 @@ color: #FF596C;
 
 .add-post form label, .edit-post form label {
   text-transform: capitalize;
+  font-weight: 600;
 }
 
 .edit-post .section-content {
   display: grid;
   row-gap: 10px;
   align-items: center;
-  grid-template-columns: 3fr 9fr;
+  margin-bottom: 30px;
 }
 
 .edit-post .section-content .section-btns {
-  justify-self: end;
+  justify-self: start;
   display: grid;
   grid-template-columns: 4fr 4fr 4fr;
   column-gap: 10px;
@@ -414,13 +415,13 @@ color: #FF596C;
   color: #FFF;
   align-items: center;
   justify-items: center;
-  border: none;
-  border-radius: 50px;
 }
 
-.edit-post .section-content textarea {
-  grid-column: 1/ span 13;
+.edit-post .section-content .section-btns .section-btn:hover {
+  transform: translateY(-5%);
+  box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.3);
 }
+
 
 form input, textarea {
   border: none;
@@ -428,6 +429,10 @@ form input, textarea {
   box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.3);
   width: 100%;
   padding: 10px;
+  line-height: 1.8;
+  text-align: left;
+  font-size: 1.025rem;
+  color: #393939;
 } 
 
 .add-post form button, .edit-post form button {
@@ -449,6 +454,10 @@ form input, textarea {
   width: 100%;
 }
 
+.description-box {
+  height: 150px;
+}
+
 .manage-post-page {
   display: grid;
   grid-template-rows: auto;
@@ -464,7 +473,14 @@ form input, textarea {
 .manage-post-page .post-detail {
   display: grid;
   grid-template-columns: 8fr 4fr;
-  padding: 10px;
+  grid-template-rows: 6fr auto;
+  row-gap: 20px;
+  align-items: center;
+}
+
+.manage-post-page .post-detail .post-title {
+  font-weight: normal;
+  font-size: 1.125rem;
 }
 
 .action-btns {

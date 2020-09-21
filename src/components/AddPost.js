@@ -81,7 +81,7 @@ class AddPost extends Component {
     return (
       <div className="add-post">
         <form onSubmit={this.handleSubmit}>
-          <h3>Add Post</h3>
+          <h2>Add Post</h2>
           <label>Title</label>
           <input type="text" name="title" onChange={this.handleTitleChange} />
           <label>Category</label>

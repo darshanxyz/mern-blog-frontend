@@ -34,7 +34,7 @@ class ManagePosts extends Component {
         <h2>Manage Posts</h2>
         {this.state.posts.filter(post => post.author === this.state.user.firstName).map((post) => (
           <div className="post-detail" key={post._id}>
-            <div>
+            <div >
               <h3 className="post-title">{post.title}</h3>
               <h5 className="post-date">{new Date(post.createdAt).getDate() +
                 ' ' + new Date(post.createdAt).toLocaleString('default', { month: 'long' }) + ', ' + new Date(post.createdAt).getFullYear()}</h5>

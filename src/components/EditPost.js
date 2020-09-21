@@ -78,19 +78,20 @@ class EditPost extends Component {
     return (
       <div className="edit-post">
         <form onSubmit={this.handleEdit}>
-          <h3>Edit Post</h3>
+          <h2>Edit Post</h2>
           <label>Title</label>
           <input type="text" name="title" onChange={this.handleTitleChange} value={this.state.title || ''} />
           <label>Category</label>
           <input type="text" name="category" onChange={this.handleCategoryChange} value={this.state.category || ''} />
           <label>Description</label>
-          <textarea rows="10" cols="50" name="description" onChange={this.handleDescriptionChange} value={this.state.description || ''} />
+          <textarea className="description-box" rows="10" cols="50" name="description" onChange={this.handleDescriptionChange} value={this.state.description || ''} />
           {
             this.state.content
               ?
               this.state.content.map((item, index) => (
                 <div className="section-content" key={index}>
                   <label>{item.contentType}</label>
+                  <textarea rows="10" cols="50" name="content" value={item.content} onChange={event => this.handleContentChange(event, index)} />
                   <div className="section-btns">
                     <button className="section-btn" style={{ backgroundColor: '#4190c8' }} onClick={event => this.handleAddSection(event, index, 'subheading')}>
                       <h4>+</h4><FaHeading color="#FFF" />
@@ -102,7 +103,6 @@ class EditPost extends Component {
                       <h4>Remove Section</h4>
                     </button>
                   </div>
-                  <textarea rows="10" cols="50" name="content" value={item.content} onChange={event => this.handleContentChange(event, index)} />
                 </div>
               ))
               :
