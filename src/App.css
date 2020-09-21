@@ -395,21 +395,21 @@ color: #FF596C;
   font-weight: 600;
 }
 
-.edit-post .section-content {
+.section-content {
   display: grid;
   row-gap: 10px;
   align-items: center;
   margin-bottom: 30px;
 }
 
-.edit-post .section-content .section-btns {
+.section-btns {
   justify-self: start;
   display: grid;
   grid-template-columns: 4fr 4fr 4fr;
   column-gap: 10px;
 }
 
-.edit-post .section-content .section-btns .section-btn {
+.section-btns .section-btn {
   display: grid;
   grid-template-columns: auto 5fr;
   color: #FFF;
@@ -417,9 +417,13 @@ color: #FF596C;
   justify-items: center;
 }
 
-.edit-post .section-content .section-btns .section-btn:hover {
+.section-btns .section-btn:hover {
   transform: translateY(-5%);
   box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.3);
+}
+
+.section-btns .section-btn:focus {
+  outline: none;
 }
 
 
@@ -456,6 +460,21 @@ form input, textarea {
 
 .description-box {
   height: 150px;
+}
+
+.cta-mains {
+  width: 15rem !important;
+  background-color: #4190c8;
+  color: #FFF;
+}
+
+.cta-mains:hover {
+  transform: translateY(-5%);
+  box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.3);
+}
+
+.cta-mains:focus {
+  outline: none;
 }
 
 .manage-post-page {

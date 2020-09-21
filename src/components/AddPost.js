@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FaHeading, FaParagraph, FaTrash } from 'react-icons/fa';
 import axios from 'axios';
 
 class AddPost extends Component {
@@ -82,24 +83,32 @@ class AddPost extends Component {
       <div className="add-post">
         <form onSubmit={this.handleSubmit}>
           <h2>Add Post</h2>
-          <label>Title</label>
+          <label>Title<span style={{ color: '#FF596C' }}> *</span></label>
           <input type="text" name="title" onChange={this.handleTitleChange} />
-          <label>Category</label>
+          <label>Category<span style={{ color: '#FF596C' }}> *</span></label>
           <input type="text" name="category" onChange={this.handleCategoryChange} />
-          <label>Description</label>
-          <textarea rows="10" cols="50" name="description" onChange={this.handleDescriptionChange} />
+          <label>Description<span style={{ color: '#FF596C' }}> *</span></label>
+          <textarea className="description-box" rows="10" cols="50" name="description" onChange={this.handleDescriptionChange} />
           {this.state.content.map((item, index) => (
-            <div key={index}>
+            <div className="section-content" key={index}>
+              <label>{item.contentType}</label>
               <textarea rows="10" cols="50" name="content" value={item.content} onChange={event => this.handleContentChange(event, index)} />
-              <button className="" onClick={event => this.handleRemoveField(event, index)}>Remove</button>
+              <div className="section-btns">
+                <button className="section-btn" style={{ backgroundColor: '#FF596C' }} onClick={event => this.handleRemoveField(event, index)}>
+                  <FaTrash color="#FFF" />
+                </button>
+              </div>
             </div>
           ))}
-          <div className="add-content-btns">
-            <button onClick={this.handleAddSubheading} type="submit">Add Subheading</button>
-            <button onClick={this.handleAddParagraph} type="submit">Add Paragraph</button>
-            {JSON.stringify(this.state.content)}
+          <div className="section-btns">
+            <button className="section-btn" style={{ backgroundColor: '#4190c8' }} onClick={this.handleAddSubheading}>
+              <FaHeading color="#FFF" />
+            </button>
+            <button className="section-btn" style={{ backgroundColor: '#4190c8' }} onClick={this.handleAddParagraph}>
+              <FaParagraph color="#FFF" />
+            </button>
           </div>
-          <button type="submit">Add Post</button>
+          <button className="cta-mains" type="submit">Add Post</button>
         </form>
       </div>
     );

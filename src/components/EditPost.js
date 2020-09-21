@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FaHeading, FaParagraph } from 'react-icons/fa';
+import { FaHeading, FaParagraph, FaTrash } from 'react-icons/fa';
 import axios from 'axios';
 
 class EditPost extends Component {
@@ -79,11 +79,11 @@ class EditPost extends Component {
       <div className="edit-post">
         <form onSubmit={this.handleEdit}>
           <h2>Edit Post</h2>
-          <label>Title</label>
+          <label>Title<span style={{ color: '#FF596C' }}> *</span></label>
           <input type="text" name="title" onChange={this.handleTitleChange} value={this.state.title || ''} />
-          <label>Category</label>
+          <label>Category<span style={{ color: '#FF596C' }}> *</span></label>
           <input type="text" name="category" onChange={this.handleCategoryChange} value={this.state.category || ''} />
-          <label>Description</label>
+          <label>Description<span style={{ color: '#FF596C' }}> *</span></label>
           <textarea className="description-box" rows="10" cols="50" name="description" onChange={this.handleDescriptionChange} value={this.state.description || ''} />
           {
             this.state.content
@@ -94,13 +94,13 @@ class EditPost extends Component {
                   <textarea rows="10" cols="50" name="content" value={item.content} onChange={event => this.handleContentChange(event, index)} />
                   <div className="section-btns">
                     <button className="section-btn" style={{ backgroundColor: '#4190c8' }} onClick={event => this.handleAddSection(event, index, 'subheading')}>
-                      <h4>+</h4><FaHeading color="#FFF" />
+                      <FaHeading color="#FFF" />
                     </button>
                     <button className="section-btn" style={{ backgroundColor: '#4190c8' }} onClick={event => this.handleAddSection(event, index, 'paragraph')}>
-                      <h4>+</h4><FaParagraph color="#FFF" />
+                      <FaParagraph color="#FFF" />
                     </button>
                     <button className="section-btn" style={{ backgroundColor: '#FF596C' }} onClick={event => this.handleRemoveField(event, index)}>
-                      <h4>Remove Section</h4>
+                      <FaTrash color="#FFF" />
                     </button>
                   </div>
                 </div>
@@ -108,7 +108,7 @@ class EditPost extends Component {
               :
               null
           }
-          <button type="submit">Edit Post</button>
+          <button className="cta-mains" type="submit">Edit Post</button>
         </form>
       </div >
     );
