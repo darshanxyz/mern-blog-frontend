@@ -8,28 +8,31 @@ import axios from 'axios';
 import AddPost from './components/AddPost';
 import EditPost from './components/EditPost';
 import Post from './components/Post';
+import ManagePosts from './components/ManagePosts';
 
 class App extends Component {
   state = {
     posts: [],
-    user: [{
+    user: {
       isLoggedIn: false,
       accessToken: '',
       firstName: '',
       email: ''
-    }]
+    }
   }
 
   componentDidMount() {
     axios.get(`http://localhost:4000/`)
       .then(res => {
         const posts = res.data;
-        this.setState({ posts });
+        this.setState({
+          posts: posts
+        });
       });
   }
 
   getUser = (user) => {
-    this.setState({ user });
+    this.setState({ user: user });
   }
 
   render() {
@@ -39,13 +42,33 @@ class App extends Component {
           <Navbar user={this.state.user} getUser={this.getUser} />
           <Route exact path="/" render={props => (
             <React.Fragment>
-              <Content posts={this.state.posts} />
+              {this.state.posts.length > 0 ? <Content posts={this.state.posts} /> : null}
             </React.Fragment>
           )} />
           <Switch>
-            <Route path="/addPost" component={AddPost} />
-            <Route path="/:postId/edit" component={EditPost} />
-            <Route path="/:postId" component={Post} />
+            <Route path="/addPost" render={
+              props => (
+                <React.Fragment>
+                  <AddPost user={this.state.user} />
+                </React.Fragment>
+              )
+            } />
+            <Route path="/managePosts" render={
+              props => (
+                <React.Fragment>
+                  {(this.state.posts.length > 0) && (this.state.user.accessToken.length > 0)
+                    ? <ManagePosts posts={this.state.posts} user={this.state.user} /> : null}
+                </React.Fragment>
+              )
+            } />
+            <Route path="/:postId/edit" render={props => (
+              <EditPost user={this.state.user} {...props} />
+            )} />
+            <Route path="/:postId" render={props => (
+              <React.Fragment>
+                {this.state.posts.length > 0 ? <Post posts={this.state.posts} {...props} /> : null}
+              </React.Fragment>
+            )} />
           </Switch>
           <Footer />
         </div>
