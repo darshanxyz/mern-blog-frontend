@@ -128,7 +128,7 @@ li a:hover {
   display: grid;
   max-width: 500px;
   grid-template-columns: 12r;
-  margin-top: 30px;
+  margin: 30px 0;
   column-gap: 20px;
 }
 
@@ -165,7 +165,7 @@ li a:hover {
   margin-bottom: 80px;
 }
 
-.post-card {
+.blog-content .post-card, .more-posts .post-card {
   display: grid;
   height: 360px;
   grid-template-rows: 12fr;

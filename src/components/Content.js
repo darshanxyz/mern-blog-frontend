@@ -39,6 +39,7 @@ class Content extends Component {
             <button className="search-btn" type="submit" onClick={this.loadPosts}><FaSearch color="#FF596C" /></button>
           </div>
         </form>
+        <h2>Recent Posts</h2>
         <div className="blog-content">
           <Posts posts={this.state.posts} />
         </div>
