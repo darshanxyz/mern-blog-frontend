@@ -76,7 +76,7 @@ class EditPost extends Component {
 
   render() {
     return (
-      <div className="edit-post">
+      <div className="edit-post container">
         <form onSubmit={this.handleEdit}>
           <h2>Edit Post</h2>
           <label>Title<span style={{ color: '#FF596C' }}> *</span></label>
