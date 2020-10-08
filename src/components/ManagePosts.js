@@ -21,13 +21,15 @@ class ManagePosts extends Component {
 
   deletePost = id => event => {
     event.preventDefault();
-    const post = {
-      id: id
+    if (window.confirm("Are you sure you want to delete?")) {
+      const post = {
+        id: id
+      }
+      axios.delete(`http://localhost:4000/${id}`, post)
+        .then(res => {
+          window.location = "/managePosts"
+        })
     }
-    axios.delete(`http://localhost:4000/${id}`, post)
-      .then(res => {
-        window.location = "/managePosts"
-      })
   }
 
   render() {
