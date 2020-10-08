@@ -330,7 +330,6 @@ li a:hover {
   row-gap: 10px;
   border-radius: 8px;
   min-height: 150px;
-  margin-bottom: 20px;
 }
 
 .post-metrics .post-metric {
@@ -338,6 +337,11 @@ li a:hover {
   box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.3);
   border-radius: 8px;
   padding: 20px;
+}
+
+.post-metrics .post-metric .cta-button{
+  padding: 10px 13px;
+  font-size: 12px;
 }
 
 
@@ -356,6 +360,18 @@ li a:hover {
   font-size: 24px;
 }
 
+.manage-post-page .chart {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.3);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.main-svg {
+  border-radius: 8px;
+}
 
 .card-footer button {
   text-align: center;

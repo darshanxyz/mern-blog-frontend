@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FaComment, FaEdit, FaHeart, FaPen, FaRegEye, FaTrash } from 'react-icons/fa';
 import metricIllustration from '../assets/metrics.svg'
 import axios from 'axios';
-// import Plot from 'react-plotly.js';
+import Plot from 'react-plotly.js';
 
 class ManagePosts extends Component {
 
@@ -10,7 +10,7 @@ class ManagePosts extends Component {
     super();
     this.state = {
       posts: props.posts,
-      user: props.user
+      user: props.user,
     }
   }
 
@@ -32,6 +32,84 @@ class ManagePosts extends Component {
     }
   }
 
+  lineChart = (props) => (
+    <Plot
+      data={[
+        {
+          x: props.x,
+          y: props.y,
+          type: 'scatter',
+          mode: 'lines+markers',
+          fill: 'tozeroy',
+          marker: {
+            color: '#FF596C'
+          },
+        },
+      ]}
+      layout={{
+        title: props.title,
+        autosize: 'true',
+        xaxis: {
+          title: 'Months',
+          showgrid: false,
+        },
+        yaxis: {
+          title: 'Views',
+          showgrid: false,
+        }
+      }}
+      style={{
+        width: "100%",
+        height: "100%"
+      }}
+      useResizeHandler={true}
+    />
+  )
+
+  barChart = (props) => (
+    <Plot
+      data={[
+        {
+          x: props.x,
+          y: props.y1,
+          type: 'bar',
+          name: 'Likes',
+          fill: 'tozeroy',
+          marker: {
+            color: '#FF596C'
+          },
+        },
+        {
+          x: props.x,
+          y: props.y2,
+          type: 'bar',
+          name: 'Comments',
+          fill: 'tozeroy',
+          marker: {
+            color: '#fda6b0'
+          },
+        }
+      ]}
+      layout={{
+        title: props.title,
+        autosize: 'true',
+        barmode: 'stack',
+        xaxis: {
+          title: 'Months',
+          showgrid: false,
+        },
+        yaxis: {
+          title: 'Interactions',
+          showgrid: false,
+        }
+      }}
+      style={{
+        width: "100%", height: "100%"
+      }}
+      useResizeHandler={true}
+    />
+  )
+
   render() {
     return (
       <div className="container manage-post-page">
@@ -41,9 +119,7 @@ class ManagePosts extends Component {
             <div className="metric-text">
               <h1>Manage Posts</h1>
               <h3>One place to control and manage all your posts with ease</h3>
-              {/* <button href="#post-metrics" className="cta-button" style={{ backgroundColor: '#FFF' }}>Manage</button> */}
             </div>
-
           </div>
         </div>
         <h2>Posts Metrics</h2>
@@ -81,7 +157,18 @@ class ManagePosts extends Component {
             </div>
           </div>
         </div>
-        <h2>Posts</h2>
+        <div className="chart">
+          <this.lineChart
+            title="Page views per month"
+            x={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']}
+            y={[2, 6, 3, 10, 15, 12, 18, 16, 20, 12]} />
+          <this.barChart
+            title="Social interactions per month"
+            x={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']}
+            y1={[2, 6, 3, 20, 11, 7, 18, 12, 15, 12]}
+            y2={[1, 3, 6, 12, 5, 3, 9, 12, 12, 10]} />
+        </div>
+        <h2 style={{ marginTop: '20px' }}>Posts</h2>
         <table className="posts-table">
           <thead>
             <tr>
