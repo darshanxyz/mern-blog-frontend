@@ -40,13 +40,14 @@ class ManagePosts extends Component {
             <img src={metricIllustration} alt="metricIllustration"></img>
             <div className="metric-text">
               <h1>Manage Posts</h1>
-              <h3>Control all your posts with ease at a single location</h3>
+              <h3>One place to control and manage all your posts with ease</h3>
+              {/* <button href="#post-metrics" className="cta-button" style={{ backgroundColor: '#FFF' }}>Manage</button> */}
             </div>
 
           </div>
         </div>
         <h2>Posts Metrics</h2>
-        <div className="post-metrics">
+        <div id="post-metrics" className="post-metrics">
           <div className="post-metric">
             <div className="metric-header">
               <FaPen color="#FF596C" /> <h4>Posts</h4>
@@ -104,7 +105,7 @@ class ManagePosts extends Component {
                 </td>
                 <td>
                   <div className="action-btns">
-                    <button className="cta-button" style={{ backgroundColor: '#FFF' }} onClick={this.editPost(post._id)}><FaEdit color="#4190c8" /></button>
+                    <button className="cta-button" style={{ backgroundColor: '#FFF' }} onClick={this.editPost(post._id)}><FaEdit color="#FF596C" /></button>
                     <button className="cta-button" style={{ backgroundColor: '#FFF' }} onClick={this.deletePost(post._id)}><FaTrash color="#FF596C" /></button>
                   </div>
                 </td>

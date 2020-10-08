@@ -281,7 +281,8 @@ li a:hover {
 }
 
 .metric-card .card-body {
-  background-color: #FF596C;
+  background: hsla(353, 100%, 82%, 1);
+  background: linear-gradient(135deg, hsla(353, 100%, 82%, 1) 0%, hsla(353, 100%, 75%, 1) 22%, hsla(353, 100%, 67%, 1) 86%);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   column-gap: 20px;
@@ -310,7 +311,15 @@ li a:hover {
 
 .metric-card .card-body .metric-text h3 {
   font-weight: 300;
-  color: #EAEAEA;
+  color: #FFF;
+}
+
+.metric-card .card-body .metric-text .cta-button {
+  margin-top: 20px;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #FF596C;
+  padding: 15px 25px;
 }
 
 .post-metrics {
@@ -602,6 +611,7 @@ form input, textarea {
 .manage-post-page .posts-table {
   box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.3);
   border-radius: 8px;
+  border-collapse: collapse;
 }
 
 .manage-post-page .posts-table th, .manage-post-page .posts-table td {
@@ -611,6 +621,10 @@ form input, textarea {
 
 .manage-post-page .posts-table tbody tr {
   border-bottom: 1px solid #EAEAEA;
+}
+
+.manage-post-page .posts-table tbody tr:nth-last-of-type(1) {
+  border-bottom: none;
 }
 
 .action-btns {
