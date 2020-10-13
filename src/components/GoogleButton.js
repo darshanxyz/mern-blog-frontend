@@ -15,7 +15,6 @@ class GoogleButton extends Component {
   }
 
   login(response) {
-    console.log(response);
     if (response.accessToken) {
       const user = {
         isLoggedIn: true,

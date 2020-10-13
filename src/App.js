@@ -18,7 +18,8 @@ class App extends Component {
       accessToken: '',
       firstName: '',
       email: ''
-    }
+    },
+    metrics: {}
   }
 
   componentDidMount() {
@@ -33,6 +34,11 @@ class App extends Component {
 
   getUser = (user) => {
     this.setState({ user: user });
+    axios.post(`http://localhost:4000/metrics`, { 'user': this.state.user })
+      .then(res => {
+        const metrics = res.data;
+        this.setState({ metrics });
+      });
   }
 
   render() {
@@ -56,8 +62,8 @@ class App extends Component {
             <Route path="/managePosts" render={
               props => (
                 <React.Fragment>
-                  {(this.state.posts.length > 0) && (this.state.user.accessToken.length > 0)
-                    ? <ManagePosts posts={this.state.posts} user={this.state.user} /> : null}
+                  {(this.state.posts.length > 0) && (this.state.user.accessToken.length > 0) && (this.state.metrics.totalPosts)
+                    ? <ManagePosts posts={this.state.posts} metrics={this.state.metrics} user={this.state.user} /> : null}
                 </React.Fragment>
               )
             } />

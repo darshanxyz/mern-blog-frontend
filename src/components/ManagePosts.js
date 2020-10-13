@@ -11,6 +11,7 @@ class ManagePosts extends Component {
     this.state = {
       posts: props.posts,
       user: props.user,
+      metrics: props.metrics
     }
   }
 
@@ -129,7 +130,7 @@ class ManagePosts extends Component {
               <FaPen color="#FF596C" /> <h4>Posts</h4>
             </div>
             <div className="metric-number">
-              <h2>15</h2>
+              <h2>{this.state.metrics.totalPosts}</h2>
             </div>
           </div>
           <div className="post-metric">
@@ -137,7 +138,7 @@ class ManagePosts extends Component {
               <FaRegEye color="#FF596C" /><h4>Page Views</h4>
             </div>
             <div className="metric-number">
-              <h2>2.2K</h2>
+              <h2>{this.state.metrics.totalPageViews}</h2>
             </div>
           </div>
           <div className="post-metric">
@@ -145,7 +146,7 @@ class ManagePosts extends Component {
               <FaHeart color="#FF596C" /> <h4>Likes</h4>
             </div>
             <div className="metric-number">
-              <h2>750</h2>
+              <h2>{this.state.metrics.totalLikes}</h2>
             </div>
           </div>
           <div className="post-metric">
@@ -153,7 +154,7 @@ class ManagePosts extends Component {
               <FaComment color="#FF596C" /> <h4>Comments</h4>
             </div>
             <div className="metric-number">
-              <h2>540</h2>
+              <h2>{this.state.metrics.totalComments}</h2>
             </div>
           </div>
         </div>
