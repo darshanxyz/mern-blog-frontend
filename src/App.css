@@ -281,8 +281,7 @@ li a:hover {
 }
 
 .metric-card .card-body {
-  background: hsla(353, 100%, 82%, 1);
-  background: linear-gradient(135deg, hsla(353, 100%, 82%, 1) 0%, hsla(353, 100%, 75%, 1) 22%, hsla(353, 100%, 67%, 1) 86%);
+  background: #FF596C;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   column-gap: 20px;
