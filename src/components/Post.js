@@ -14,10 +14,16 @@ class Post extends Component {
 
   componentDidMount() {
     const { match: { params } } = this.props;
+    const post = this.props.posts.filter(post => post._id === params.postId)[0];
     this.setState({
       posts: this.props.posts,
-      post: this.props.posts.filter(post => post._id === params.postId)[0]
+      post: post
     });
+    const pageView = post.pageViews + 1
+    const postToPatch = {
+      'pageViews': pageView
+    }
+    axios.patch(`http://localhost:4000/${params.postId}`, postToPatch);
     this.postId = params.postId;
   }
 
