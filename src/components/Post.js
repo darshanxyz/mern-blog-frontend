@@ -129,7 +129,7 @@ class Post extends Component {
             <button className="cta-mains post-btn" type="submit">Post</button>
           </form>
           <div className="all-comments">
-            {(this.state.post.comments) ? this.state.post.comments.map((comment, index) => (
+            {(this.state.post.comments) ? this.state.post.comments.sort((a, b) => (a.commentedAt < b.commentedAt) ? 1 : -1).map((comment, index) => (
               <div className="comment" key={index}>
                 <p className="comment-user">{comment.user}<span className="comment-time">{this.getDaysAgo(comment.commentedAt)}</span></p>
                 <p className="comment-text">{comment.comment}</p>
