@@ -404,7 +404,6 @@ li a:hover {
 .post-page .post-interactions {
   display: grid;
   grid-template-columns: 12fr;
-  margin-bottom: 70px;
 }
 
 .post-page .post-likes {
