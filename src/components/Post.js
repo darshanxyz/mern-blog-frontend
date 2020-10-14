@@ -9,7 +9,8 @@ class Post extends Component {
 
   state = {
     posts: [],
-    post: {}
+    post: {},
+    user: {}
   }
 
   componentDidMount() {
@@ -17,7 +18,8 @@ class Post extends Component {
     const post = this.props.posts.filter(post => post._id === params.postId)[0];
     this.setState({
       posts: this.props.posts,
-      post: post
+      post: post,
+      user: this.props.user
     });
     const pageView = post.pageViews + 1
     const postToPatch = {
@@ -62,7 +64,7 @@ class Post extends Component {
   handleCommentAdd = (event) => {
     event.preventDefault();
     const comment = {
-      user: this.state.post.author,
+      user: (this.state.user.firsName) ? this.state.user.firsName : 'Anonymous',
       commentedAt: Date.now(),
       comment: this.state.post.comment
     }

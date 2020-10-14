@@ -70,7 +70,7 @@ class App extends Component {
             )} />
             <Route path="/:postId" render={props => (
               <React.Fragment>
-                {this.state.posts.length > 0 ? <Post posts={this.state.posts} {...props} /> : null}
+                {this.state.posts.length > 0 ? <Post posts={this.state.posts} user={this.state.user} {...props} /> : null}
               </React.Fragment>
             )} />
           </Switch>
