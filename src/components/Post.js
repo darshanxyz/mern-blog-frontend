@@ -124,13 +124,12 @@ class Post extends Component {
           <h2>Comments</h2>
           <form onSubmit={this.handleCommentAdd}>
             <input type="text" name="title" placeholder="Add a comment" onChange={this.handleCommentChange} />
-            <button className="cta-mains" type="submit">Post</button>
+            <button className="cta-mains post-btn" type="submit">Post</button>
           </form>
           <div className="all-comments">
             {(this.state.post.comments) ? this.state.post.comments.map((comment, index) => (
               <div className="comment" key={index}>
-                <p className="comment-user">{comment.user}</p>
-                <p className="comment-time">{this.getDaysAgo(comment.commentedAt)}</p>
+                <p className="comment-user">{comment.user}<span className="comment-time">{this.getDaysAgo(comment.commentedAt)}</span></p>
                 <p className="comment-text">{comment.comment}</p>
               </div>
             )) : null}
