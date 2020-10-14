@@ -52,6 +52,29 @@ class Post extends Component {
     }
   }
 
+  handleCommentChange = event => {
+    var post = { ...this.state.post };
+    console.log(post);
+    post.comment = event.target.value;
+    this.setState({ post: post });
+  }
+
+  handleCommentAdd = (event) => {
+    event.preventDefault();
+    const comment = {
+      user: this.state.post.author,
+      commentedAt: Date.now(),
+      comment: this.state.post.comment
+    }
+    const { match: { params } } = this.props;
+    axios.patch(`http://localhost:4000/comment/${params.postId}`, comment)
+      .then(res => {
+        const post = { ...this.state.post };
+        post.comments.push(comment);
+        this.setState({ post });
+      })
+  }
+
   render() {
     return (
       <div className="post-page">
@@ -101,7 +124,7 @@ class Post extends Component {
           </form>
           <div className="all-comments">
             {(this.state.post.comments) ? this.state.post.comments.map((comment, index) => (
-              <div className="comment">
+              <div className="comment" key={index}>
                 <p className="comment-user">{comment.user}</p>
                 <p className="comment-time">{comment.commentedAt}</p>
                 <p className="comment-text">{comment.comment}</p>
