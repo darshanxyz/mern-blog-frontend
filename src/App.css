@@ -669,3 +669,41 @@ form input, textarea {
   transform: translateY(-5%);
   box-shadow: 1px 3px 15px -5px rgba(0,0,0,0.3);
 }
+
+.comments {
+  margin: 20px 0;
+}
+
+.comments h2 {
+  margin-bottom: 20px;
+}
+
+.comments input {
+  font-size: 14px;
+}
+
+.comments .all-comments {
+  padding: 20px 0;
+}
+
+.comments .all-comments .comment{
+  margin-bottom: 20px;
+}
+
+.comment .comment-user {
+  font-weight: 700;
+  font-size: 16px;
+  color: #393939;
+}
+
+.comment .comment-time {
+  font-weight: 400;
+  font-size: 12px;
+  color: #393939;
+  margin-bottom: 5px;
+}
+
+.comment .comment-text {
+  font-weight: 400; 
+  color: #393939;
+}

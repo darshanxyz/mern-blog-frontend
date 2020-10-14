@@ -26,9 +26,7 @@ class App extends Component {
     axios.get(`http://localhost:4000/`)
       .then(res => {
         const posts = res.data;
-        this.setState({
-          posts: posts
-        });
+        this.setState({ posts });
       });
   }
 

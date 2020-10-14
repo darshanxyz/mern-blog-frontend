@@ -93,6 +93,22 @@ class Post extends Component {
             <p>45</p>
           </h3>
         </div>
+        <div className="edit-post comments">
+          <h2>Comments</h2>
+          <form onSubmit={this.handleCommentAdd}>
+            <input type="text" name="title" placeholder="Add a comment" onChange={this.handleCommentChange} />
+            <button className="cta-mains" type="submit">Post</button>
+          </form>
+          <div className="all-comments">
+            {(this.state.post.comments) ? this.state.post.comments.map((comment, index) => (
+              <div className="comment">
+                <p className="comment-user">{comment.user}</p>
+                <p className="comment-time">{comment.commentedAt}</p>
+                <p className="comment-text">{comment.comment}</p>
+              </div>
+            )) : null}
+          </div>
+        </div>
         <h2>More on <span style={{ color: '#FF596C' }}>dblogr</span></h2>
         <div className="more-posts">
           {this.props.posts.filter(post => post._id !== this.postId).map((post, index) => (
