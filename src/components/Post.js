@@ -112,8 +112,6 @@ class Post extends Component {
           <h3 className="post-likes">
             <FaHeart onClick={this.handleLikes} color={this.getHeartColor()} />
             <p>{this.state.post.likes}</p>
-            <FaComments color="#4190c8" />
-            <p>45</p>
           </h3>
         </div>
         <div className="edit-post comments">

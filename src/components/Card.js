@@ -34,7 +34,7 @@ class Card extends Component {
                   <FaHeart color="#FF596C" />
                   <p>{this.props.post.likes}</p>
                   <FaComments color="#4190c8" />
-                  <p>45</p>
+                  <p>{this.props.post.comments.length}</p>
                 </h5>
               </div>
             </div>
