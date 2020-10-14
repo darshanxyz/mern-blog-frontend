@@ -28,7 +28,9 @@ class ManagePosts extends Component {
       }
       axios.delete(`http://localhost:4000/${id}`, post)
         .then(res => {
-          window.location = "/managePosts"
+          var posts = [...this.state.posts];
+          posts = posts.filter((p) => p._id !== id);
+          this.setState({ posts });
         })
     }
   }

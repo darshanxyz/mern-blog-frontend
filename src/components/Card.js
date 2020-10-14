@@ -21,7 +21,6 @@ class Card extends Component {
     return (
       <div className="post-card">
         <div className="card-body" style={{ backgroundImage: `url("${this.state.imageLink}")` }}>
-          {/* <p>{this.props.post.description.length > 300 ? this.props.post.description.slice(0, 300) + ' ...' : this.props.post.description}</p> */}
           <div className="overlay" onClick={this.readPost}>
             <div className="card-header">
               <h5 className="post-category">{this.props.post.category}</h5>

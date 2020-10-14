@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { FaHeart, FaComments } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 import Card from './Card';
 
 class Post extends Component {
