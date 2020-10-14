@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { FaHeart, FaComments } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 import Card from './Card';
 
 class Post extends Component {
@@ -9,15 +9,23 @@ class Post extends Component {
 
   state = {
     posts: [],
-    post: {}
+    post: {},
+    user: {}
   }
 
   componentDidMount() {
     const { match: { params } } = this.props;
+    const post = this.props.posts.filter(post => post._id === params.postId)[0];
     this.setState({
       posts: this.props.posts,
-      post: this.props.posts.filter(post => post._id === params.postId)[0]
+      post: post,
+      user: this.props.user
     });
+    const pageView = post.pageViews + 1
+    const postToPatch = {
+      'pageViews': pageView
+    }
+    axios.patch(`http://localhost:4000/${params.postId}`, postToPatch);
     this.postId = params.postId;
   }
 
@@ -44,6 +52,35 @@ class Post extends Component {
     else {
       return '#EAEAEA'
     }
+  }
+
+  handleCommentChange = event => {
+    var post = { ...this.state.post };
+    console.log(post);
+    post.comment = event.target.value;
+    this.setState({ post: post });
+  }
+
+  handleCommentAdd = (event) => {
+    event.preventDefault();
+    const comment = {
+      user: (this.state.user.firsName) ? this.state.user.firsName : 'Anonymous',
+      commentedAt: Date.now(),
+      comment: this.state.post.comment
+    }
+    const { match: { params } } = this.props;
+    axios.patch(`http://localhost:4000/comment/${params.postId}`, comment)
+      .then(res => {
+        const post = { ...this.state.post };
+        post.comments.push(comment);
+        this.setState({ post });
+      })
+  }
+
+  getDaysAgo = (commentedAt) => {
+    const daysAgo = Math.round((Date.now() - commentedAt) / (1000 * 3600 * 24), 0);
+    const daysAgoString = daysAgo === 0 ? 'Today' : daysAgo === 1 ? daysAgo.toString() + ' day ago' : daysAgo.toString + ' days ago';
+    return daysAgoString
   }
 
   render() {
@@ -83,9 +120,22 @@ class Post extends Component {
           <h3 className="post-likes">
             <FaHeart onClick={this.handleLikes} color={this.getHeartColor()} />
             <p>{this.state.post.likes}</p>
-            <FaComments color="#4190c8" />
-            <p>45</p>
           </h3>
+        </div>
+        <div className="edit-post comments">
+          <h2>Comments</h2>
+          <form onSubmit={this.handleCommentAdd}>
+            <input type="text" name="title" placeholder="Add a comment" onChange={this.handleCommentChange} />
+            <button className="cta-mains post-btn" type="submit">Post</button>
+          </form>
+          <div className="all-comments">
+            {(this.state.post.comments) ? this.state.post.comments.sort((a, b) => (a.commentedAt < b.commentedAt) ? 1 : -1).map((comment, index) => (
+              <div className="comment" key={index}>
+                <p className="comment-user">{comment.user}<span className="comment-time">{this.getDaysAgo(comment.commentedAt)}</span></p>
+                <p className="comment-text">{comment.comment}</p>
+              </div>
+            )) : null}
+          </div>
         </div>
         <h2>More on <span style={{ color: '#FF596C' }}>dblogr</span></h2>
         <div className="more-posts">

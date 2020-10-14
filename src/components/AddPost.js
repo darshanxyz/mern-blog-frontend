@@ -80,7 +80,7 @@ class AddPost extends Component {
 
   render() {
     return (
-      <div className="add-post">
+      <div className="add-post container">
         <form onSubmit={this.handleSubmit}>
           <h2>Add Post</h2>
           <label>Title<span style={{ color: '#FF596C' }}> *</span></label>

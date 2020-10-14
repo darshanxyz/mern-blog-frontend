@@ -18,21 +18,25 @@ class App extends Component {
       accessToken: '',
       firstName: '',
       email: ''
-    }
+    },
+    metrics: {}
   }
 
   componentDidMount() {
     axios.get(`http://localhost:4000/`)
       .then(res => {
         const posts = res.data;
-        this.setState({
-          posts: posts
-        });
+        this.setState({ posts });
       });
   }
 
   getUser = (user) => {
     this.setState({ user: user });
+    axios.post(`http://localhost:4000/metrics`, { 'user': this.state.user })
+      .then(res => {
+        const metrics = res.data;
+        this.setState({ metrics });
+      });
   }
 
   render() {
@@ -56,8 +60,8 @@ class App extends Component {
             <Route path="/managePosts" render={
               props => (
                 <React.Fragment>
-                  {(this.state.posts.length > 0) && (this.state.user.accessToken.length > 0)
-                    ? <ManagePosts posts={this.state.posts} user={this.state.user} /> : null}
+                  {(this.state.posts.length > 0) && (this.state.user.accessToken.length > 0) && (this.state.metrics.totalPosts)
+                    ? <ManagePosts posts={this.state.posts} metrics={this.state.metrics} user={this.state.user} /> : null}
                 </React.Fragment>
               )
             } />
@@ -66,7 +70,7 @@ class App extends Component {
             )} />
             <Route path="/:postId" render={props => (
               <React.Fragment>
-                {this.state.posts.length > 0 ? <Post posts={this.state.posts} {...props} /> : null}
+                {this.state.posts.length > 0 ? <Post posts={this.state.posts} user={this.state.user} {...props} /> : null}
               </React.Fragment>
             )} />
           </Switch>
