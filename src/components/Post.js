@@ -75,6 +75,12 @@ class Post extends Component {
       })
   }
 
+  getDaysAgo = (commentedAt) => {
+    const daysAgo = Math.round((Date.now() - commentedAt) / (1000 * 3600 * 24), 0);
+    const daysAgoString = daysAgo === 0 ? 'Today' : daysAgo === 1 ? daysAgo.toString() + ' day ago' : daysAgo.toString + ' days ago';
+    return daysAgoString
+  }
+
   render() {
     return (
       <div className="post-page">
@@ -124,7 +130,7 @@ class Post extends Component {
             {(this.state.post.comments) ? this.state.post.comments.map((comment, index) => (
               <div className="comment" key={index}>
                 <p className="comment-user">{comment.user}</p>
-                <p className="comment-time">{comment.commentedAt}</p>
+                <p className="comment-time">{this.getDaysAgo(comment.commentedAt)}</p>
                 <p className="comment-text">{comment.comment}</p>
               </div>
             )) : null}
